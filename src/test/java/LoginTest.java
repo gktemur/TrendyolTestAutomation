@@ -1,18 +1,16 @@
 import Base.BaseTest;
 import Pages.LoginPage;
 import Pages.MainPage;
-import org.openqa.selenium.By;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Feature("Login Test Cases")
 public class LoginTest extends BaseTest {
-    private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
     LoginPage login = new LoginPage();
     MainPage mainPage = new MainPage();
 
-    @Test
+    @Test(description = "Başarılı Kullanıcı Girişi")
         public void LoginSuccessful() throws InterruptedException {
             login.fillMail(mail)
                     .fillPassword(password)
@@ -22,7 +20,7 @@ public class LoginTest extends BaseTest {
             assertEquals("Hesabım",value);
     }
 
-    @Test
+    @Test(description = "Başarısız Kullanıcı Girişi")
     public void LoginUnSuccessful() throws InterruptedException {
 
         login.fillMail(mail)
@@ -34,7 +32,7 @@ public class LoginTest extends BaseTest {
     }
 
 
-    @Test
+    @Test(description = "Boş Karakter Kontrolü")
     public void RequiredControl() throws InterruptedException {
 
 
@@ -53,7 +51,7 @@ public class LoginTest extends BaseTest {
         assertEquals("Hesabım", value3);
     }
 
-    @Test
+    @Test(description = "Min-max karakter kontrolü")
     public void MinMaxCharacterControl() throws InterruptedException {
 
         login.fillMail("a")
